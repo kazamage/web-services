@@ -1,0 +1,29 @@
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'idea'
+
+sourceCompatibility = jdkVersion
+targetCompatibility = jdkVersion
+
+tasks.withType(AbstractCompile) {
+    it.options.encoding = defaultEncoding
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    providedCompile 'com.sun.xml.ws:jaxws-rt:2.2.5'
+}
+
+idea {
+    module {
+        downloadJavadoc = true
+        downloadSources = true
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = gradleWrapperVersion
+}
